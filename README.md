@@ -182,7 +182,7 @@ psql postgres
 
 ```sql
 CREATE DATABASE inventory_management_db;
-CREATE USER inventory_user WITH PASSWORD 'inventory_pass_2024';
+CREATE USER inventory_user WITH PASSWORD '1234';
 GRANT ALL PRIVILEGES ON DATABASE inventory_management_db TO inventory_user;
 \q
 ```
@@ -234,7 +234,7 @@ psql -U postgres
 
 ```sql
 CREATE DATABASE inventory_management_db;
-CREATE USER inventory_user WITH PASSWORD 'inventory_pass_2024';
+CREATE USER inventory_user WITH PASSWORD '1234';
 GRANT ALL PRIVILEGES ON DATABASE inventory_management_db TO inventory_user;
 \q
 ```
@@ -493,7 +493,7 @@ docker exec inventory_frontend nginx -t
 **Backend cannot connect to database in Docker**
 ```bash
 # Check DATABASE_URL in docker-compose.yml uses 'db' not 'localhost'
-DATABASE_URL=postgresql://inventory_user:inventory_pass_2024@db:5432/inventory_management_db
+DATABASE_URL=postgresql://inventory_user:1234@db:5432/inventory_management_db
 ```
 
 ---
