@@ -1,0 +1,62 @@
+"""create module1 products tables
+
+Revision ID: e1a2b3c4d5e6
+Revises: d40323cae00f
+Create Date: 2026-06-09
+
+"""
+from alembic import op
+import sqlalchemy as sa
+
+revision = 'e1a2b3c4d5e6'
+down_revision = 'd40323cae00f'
+branch_labels = None
+depends_on = None
+
+
+def upgrade():
+    op.create_table('categories',
+        sa.Column('id', sa.Integer(), nullable=False),
+        sa.Column('name', sa.String(length=100), nullable=False),
+        sa.Column('description', sa.Text(), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
+        sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
+        sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('name')
+    )
+    op.create_table('suppliers',
+        sa.Column('id', sa.Integer(), nullable=False),
+        sa.Column('name', sa.String(length=150), nullable=False),
+        sa.Column('contact_person', sa.String(length=100), nullable=True),
+        sa.Column('email', sa.String(length=120), nullable=False),
+        sa.Column('phone', sa.String(length=20), nullable=True),
+        sa.Column('address', sa.Text(), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
+        sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
+        sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('email')
+    )
+    op.create_table('products',
+        sa.Column('id', sa.Integer(), nullable=False),
+        sa.Column('category_id', sa.Integer(), nullable=False),
+        sa.Column('supplier_id', sa.Integer(), nullable=False),
+        sa.Column('name', sa.String(length=200), nullable=False),
+        sa.Column('sku', sa.String(length=50), nullable=False),
+        sa.Column('price', sa.Numeric(precision=10, scale=2), nullable=False),
+        sa.Column('description', sa.Text(), nullable=True),
+        sa.Column('reorder_level', sa.Integer(), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
+        sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
+        sa.ForeignKeyConstraint(['category_id'], ['categories.id']),
+        sa.ForeignKeyConstraint(['supplier_id'], ['suppliers.id']),
+        sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('sku')
+    )
+    with op.batch_alter_table('products') as batch_op:
+        batch_op.create_index('ix_products_sku', ['sku'], unique=True)
+
+
+def downgrade():
+    op.drop_table('products')
+    op.drop_table('suppliers')
+    op.drop_table('categories')
