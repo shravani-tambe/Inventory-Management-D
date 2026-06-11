@@ -15,8 +15,8 @@ const apiClient = axios.create({
 // When Module 4 adds authentication, the JWT token gets attached here
 apiClient.interceptors.request.use(
   (config) => {
-    // const token = localStorage.getItem('token');
-    // if (token) config.headers.Authorization = `Bearer ${token}`;
+    const token = localStorage.getItem('token');
+    if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   (error) => Promise.reject(error)
@@ -30,6 +30,7 @@ apiClient.interceptors.response.use(
     if (error.response?.status === 401) {
       // Module 4 will add redirect to login here
       console.warn('Unauthorized — login required');
+      window.location.href = '/login';
     }
     return Promise.reject(error);
   }

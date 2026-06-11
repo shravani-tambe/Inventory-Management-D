@@ -4,6 +4,7 @@ import { dashboardApi } from '../../api/dashboardApi';
 import StatusBadge from '../../components/common/StatusBadge';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { formatCurrency, formatDate } from '../../utils/formatters';
+import AnalyticsSection from './components/AnalyticsSection';
 
 const StatCard = ({ label, value, color = '#111827', bg = '#fff' }) => (
   <div style={{
@@ -84,6 +85,9 @@ const DashboardPage = () => {
           </div>
         </>
       )}
+
+      {/* Module 4 Analytics Section */}
+      <AnalyticsSection />
 
       {/* Recent tables */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>

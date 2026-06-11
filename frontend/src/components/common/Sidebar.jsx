@@ -27,6 +27,22 @@ const navItems = [
 ];
 
 const Sidebar = () => {
+  const userRole = localStorage.getItem('user_role');
+
+  const filteredNavItems = [...navItems];
+  if (userRole === 'admin' || userRole === 'manager') {
+    const module4Links = [
+      { to: '/alerts', label: 'Alerts', icon: '🔔' },
+      { to: '/reports', label: 'Reports', icon: '📊' }
+    ];
+    if (userRole === 'admin') {
+      module4Links.push({ to: '/audit-logs', label: 'Audit Log', icon: '📋' });
+    }
+    filteredNavItems.push({
+      section: 'MODULE 4 — ANALYTICS',
+      links: module4Links
+    });
+  }
   return (
     <aside style={{
       width: '240px',
@@ -63,7 +79,7 @@ const Sidebar = () => {
 
       {/* Navigation */}
       <nav style={{ flex: 1, padding: '12px 0', overflowY: 'auto' }}>
-        {navItems.map((group) => (
+        {filteredNavItems.map((group) => (
           <div key={group.section} style={{ marginBottom: '8px' }}>
             <div style={{
               padding: '8px 20px 4px',
