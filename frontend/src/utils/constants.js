@@ -18,4 +18,10 @@ export const SO_STATUSES = {
   cancelled: { label: 'Cancelled', color: '#A32D2D', bg: '#FCEBEB' },
 };
 
+export const ALERT_SEVERITIES = {
+  critical: { label: 'Critical', color: '#A32D2D', bg: '#FCEBEB' },
+  warning: { label: 'Warning', color: '#854F0B', bg: '#FAEEDA' },
+  info: { label: 'Info', color: '#185FA5', bg: '#E6F1FB' },
+};
+
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';

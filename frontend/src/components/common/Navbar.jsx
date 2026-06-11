@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Map paths to breadcrumb labels
 const breadcrumbMap = {
@@ -14,6 +14,7 @@ const breadcrumbMap = {
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const getBreadcrumb = () => {
     const path = location.pathname;
@@ -57,7 +58,10 @@ const Navbar = () => {
         }}>
           🔔
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div 
+          style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+          onClick={() => navigate('/login')}
+        >
           <div style={{
             width: '32px', height: '32px',
             borderRadius: '50%',

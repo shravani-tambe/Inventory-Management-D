@@ -1,11 +1,13 @@
-import { PO_STATUSES, SO_STATUSES } from '../../utils/constants';
+import { PO_STATUSES, SO_STATUSES, ALERT_SEVERITIES } from '../../utils/constants';
 
 /**
  * Colored pill badge showing order status.
  * Usage: <StatusBadge status="approved" type="po" />
  */
 const StatusBadge = ({ status, type = 'po' }) => {
-  const statusMap = type === 'po' ? PO_STATUSES : SO_STATUSES;
+  let statusMap = PO_STATUSES;
+  if (type === 'so') statusMap = SO_STATUSES;
+  if (type === 'alert') statusMap = ALERT_SEVERITIES;
   const config = statusMap[status] || {
     label: status,
     color: '#666',

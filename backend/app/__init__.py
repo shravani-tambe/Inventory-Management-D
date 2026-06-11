@@ -33,8 +33,11 @@ def create_app(config_name='development'):
     from .modules.module1_products.routes import products_bp
     app.register_blueprint(products_bp, url_prefix='/api/v1')
     # Placeholders for future teammates' modules
-    # from .modules.module1_products.routes import products_bp
-    # app.register_blueprint(products_bp, url_prefix='/api/v1')
+    from .modules.module4_auth.routes import auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/api/v1')
+
+    from .modules.module4_analytics.routes import analytics_bp
+    app.register_blueprint(analytics_bp, url_prefix='/api/v1')
 
     # Register shared error handlers
     from .shared.error_handlers import register_error_handlers

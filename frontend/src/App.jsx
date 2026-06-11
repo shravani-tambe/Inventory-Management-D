@@ -14,6 +14,13 @@ import ProductsPage from './pages/products/ProductsPage';
 import CategoriesPage from './pages/categories/CategoriesPage';
 import SuppliersPage from './pages/suppliers/SuppliersPage';
 
+// Module 4 pages
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import AlertsPage from './pages/alerts/AlertsPage';
+import ReportsPage from './pages/reports/ReportsPage';
+import AuditLogPage from './pages/audit/AuditLogPage';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -25,6 +32,11 @@ const App = () => {
         }}
       />
       <Routes>
+        {/* Public Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Protected/Layout Routes */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<DashboardPage />} />
 
@@ -42,6 +54,11 @@ const App = () => {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/suppliers" element={<SuppliersPage />} />
+
+          {/* Module 4 — Analytics & Alerts */}
+          <Route path="/alerts" element={<AlertsPage />} />
+          <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/audit-logs" element={<AuditLogPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
