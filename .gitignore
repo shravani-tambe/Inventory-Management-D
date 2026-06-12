@@ -1,44 +1,57 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Python
+# ========================
+# Python / Backend
+# ========================
+backend/venv/
+backend/.venv/
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
 
-# Virtual environments
-venv/
+# Environment variables (NEVER commit)
 .env
-.venv/
 backend/.env
-backend/venv
 
-# IDE files
-.vscode/
+# ========================
+# Node.js / Frontend
+# ========================
+frontend/node_modules/
+node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ========================
+# IDE & OS
+# ========================
 .idea/
-
-# OS files
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# ========================
+# Testing & Coverage
+# ========================
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.pytest_cache/
